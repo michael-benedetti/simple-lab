@@ -2,7 +2,7 @@ resources:
   - name: repo
     type: git
     source:
-      uri: http://gitea:5000/gitea/Test.git
+      uri: http://10.5.0.4:3000/gitea/Test.git
 
 jobs:
   - name: hello-world-job
@@ -21,7 +21,7 @@ jobs:
           inputs:
             - name: repo
           run:
-            path: echo
+            path: cat
             args: ["repo/README.md"]
 
 
