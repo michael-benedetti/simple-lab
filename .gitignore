@@ -3,4 +3,5 @@ gitea-postgres
 heimdall
 registry
 concourse-postgres
+sonarqube
 .idea

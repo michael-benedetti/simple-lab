@@ -124,5 +124,7 @@ services:
   sonarqube:
     image: sonarqube:9.3-community
     container_name: sonarqube
+    volumes:
+      - ./sonarqube:/opt/sonarqube/data
     ports:
       - "9000:9000"
