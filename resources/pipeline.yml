@@ -1,0 +1,21 @@
+jobs:
+  - name: hello-world-job
+    plan:
+      - task: hello-world-task
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              # Point at our internal docker registry
+              repository: 10.5.0.5:5000/alpine
+              insecure: true
+          run:
+            path: echo
+            args: [ "Hello world!!" ]
+
+
+# fly -t lab login -c http://server:8080 -u admin -p password
+# fly -t lab set-pipeline -p hello-world -c pipeline.yml
+# fly -t lab unpause-pipeline -p hello-world
+# fly -t tutorial trigger-job --job hello-world/hello-world-job --watch
