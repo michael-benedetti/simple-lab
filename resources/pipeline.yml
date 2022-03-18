@@ -1,6 +1,14 @@
+resources:
+  - name: repo
+    type: git
+    source:
+      uri: http://gitea:5000/gitea/Test.git
+
 jobs:
   - name: hello-world-job
     plan:
+      - get: repo
+        trigger: true
       - task: hello-world-task
         config:
           platform: linux
@@ -10,9 +18,11 @@ jobs:
               # Point at our internal docker registry
               repository: 10.5.0.5:5000/alpine
               insecure: true
+          inputs:
+            - name: repo
           run:
             path: echo
-            args: [ "Hello world!!" ]
+            args: ["repo/README.md"]
 
 
 # fly -t lab login -c http://server:8080 -u admin -p password
